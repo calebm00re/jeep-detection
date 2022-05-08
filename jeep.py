@@ -1,35 +1,24 @@
 import cv2
-import os
+from matplotlib import pyplot as plt
 
-cascPath=os.path.dirname(cv2.__file__)+"/data/haarcascade_frontalface_default.xml"
-faceCascade = cv2.CascadeClassifier(cascPath)
+img = cv2.imread("highway2.jpeg")
 
-video_capture = cv2.VideoCapture(0)
+img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
-while True:
-    # Capture frame-by-frame
-    ret, frames = video_capture.read()
+car_data = cv2.CascadeClassifier('cars.xml')
 
-    gray = cv2.cvtColor(frames, cv2.COLOR_BGR2GRAY)
+found = car_data.detectMultiScale(img_gray, minSize =(20, 20))
 
-    faces = faceCascade.detectMultiScale(
-        gray,
-        scaleFactor=1.1,
-        minNeighbors=5,
-        minSize=(30, 30),
-        flags=cv2.CASCADE_SCALE_IMAGE
-    )
+amount_found = len(found)
 
-    # Draw a rectangle around the faces
-    for (x, y, w, h) in faces:
-        cv2.rectangle(frames, (x, y), (x+w, y+h), (0, 255, 0), 2)
-
-    # Display the resulting frame
-    cv2.imshow('Video', frames)
-
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
-
-video_capture.release()
-cv2.destroyAllWindows()
+if amount_found != 0:
+	for (x, y, width, height) in found:
+		cv2.rectangle(img_rgb, (x, y),
+					(x + height, y + width),
+					(0, 255, 0), 5)
+		
+plt.subplot(1, 1, 1)
+plt.imshow(img_rgb)
+plt.show()
 
