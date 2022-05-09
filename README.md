@@ -9,6 +9,7 @@ future implementation.
 
 ### Current state
 It is recognizing vehicles from about the proper distance I would use to detect oncoming jeeps or those at a similar distance. In the future I would need to do more negative training, but it also works on trails or sand dunes as well for detecting vehicles and specifically jeeps. You can tell from the following images that it has a fair amount of false positives, and thus requires further and more specialized training sets.
+
 <img width="460" alt="Screen Shot 2022-05-08 at 10 44 01 PM" src="https://user-images.githubusercontent.com/72896477/167337308-284e043c-4873-43c0-a9ea-d9c75fda55bd.png">
 <img width="490" alt="Screen Shot 2022-05-08 at 10 45 12 PM" src="https://user-images.githubusercontent.com/72896477/167337300-8951fc0a-4b8a-4b14-b7aa-63c3fc47bff6.png">
 <img width="491" alt="Screen Shot 2022-05-08 at 10 44 19 PM" src="https://user-images.githubusercontent.com/72896477/167337319-f7e19628-3661-4040-b62c-37beca3137fd.png">
